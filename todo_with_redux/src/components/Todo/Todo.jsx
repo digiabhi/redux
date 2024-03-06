@@ -1,15 +1,19 @@
 import { bindActionCreators } from "redux";
-import { removeTodo, editTodo } from "../../actions";
+// import { removeTodo, editTodo } from "../../actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import todoSlice from "../../slices/todoSlice";
 function Todo({ title, id }) {
   const dispatch = useDispatch();
+  const { editTodo, removeTodo } = todoSlice.actions;
+
   const actions = bindActionCreators({ removeTodo, editTodo }, dispatch);
+
   const [isEditting, setIsEditting] = useState(false);
   const [edittedText, setEdittedText] = useState(title);
   function updateTodo() {
     if (isEditting) {
-      actions.updateTodo({ id: id, title: edittedText });
+      actions.editTodo({ id: id, title: edittedText });
       setIsEditting(false);
     } else {
       setIsEditting(true);
