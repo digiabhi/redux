@@ -8,7 +8,9 @@ function TodoList() {
     <>
       <TodoInput />
       {todoList &&
-        todoList.map((todo) => <Todo title={todo.title} key={todo.id} />)}
+        todoList.map((todo) => (
+          <Todo id={todo.id} title={todo.title} key={todo.id} />
+        ))}
     </>
   );
 }
